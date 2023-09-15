@@ -9,20 +9,19 @@ texto="$2"
 op="$3"
 #cambiar textos del directorio
 if [ -d "$direccion" ]; then
-	for archivo in "direccion"/*;do
+	for archivo in "$direccion"/*;do
 		nombre_actual=$(basename "$archivo")
 		extension="${nombre_actual##.}"
 		nombre_sin_extension="${nombre_actual%.*}"
 		if [ "$op" = "a" ]; then
-			nuevo="${nombre_sin_extension}${cadena}.${extension}"
-		else
-			nuevo = "${cadena}${nombre_actual}"
+			nuevo="${nombre_sin_extension}${texto}.${extension}"
+		else 
+			nuevo="${texto}${nombre_actual}"
 		fi
-	cambio="${directorio}/${nuevo}"
-	mv "$archivo" "$nuevo"
-	echo "$nuevo"
+	cambio="${direccion}/${nuevo}"
+	mv "$archivo" "$cambio"
+	echo "$cambio"
 	done
-fi
 else
 	echo "No existe la direccion"
 fi
